@@ -203,9 +203,3 @@ Raven is built for **authorized security assessments only**. Only run scans agai
 ## License
 
 MIT License — see [LICENSE](LICENSE) for details.
-
----
-
-<div align="center">
-Built by <a href="https://yarkhan02.github.io">Wali Yar Khan</a>
-</div>
