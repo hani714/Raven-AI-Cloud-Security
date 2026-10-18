@@ -1,0 +1,1 @@
+from .scan_results_mapper import ScanResultMapper

@@ -1,0 +1,60 @@
+Lambda API Commands Used in Enumeration
+
+=== CORE FUNCTION OPERATIONS ===
+list_functions - List all Lambda functions in the account
+get_function - Get function code and configuration
+get_function_configuration - Get function configuration only
+get_policy - Get function resource-based policy
+
+=== FUNCTION VERSIONING & ALIASES ===
+list_aliases - List aliases for a function
+list_versions_by_function - List all versions of a function
+
+=== FUNCTION EVENT CONFIGURATION ===
+list_event_source_mappings - List event source mappings for a function
+list_function_event_invoke_configs - List event invoke configurations for a function
+
+=== FUNCTION CONCURRENCY & SCALING ===
+get_provisioned_concurrency_config - Get provisioned concurrency configuration
+
+=== FUNCTION SECURITY & SIGNING ===
+get_function_code_signing_config - Get code signing configuration for a function
+
+=== FUNCTION TAGGING ===
+list_tags - List tags for a function (using function ARN)
+
+=== LAYER OPERATIONS ===
+list_layers - List all Lambda layers in the account
+list_layer_versions - List all versions of a specific layer
+get_layer_version - Get details for a specific layer version
+get_layer_version_policy - Get resource-based policy for a layer version
+
+=== SECURITY CONSIDERATIONS ===
+- All operations require appropriate IAM permissions
+- Functions and layers are region-specific resources
+- Some operations may return empty results if resources don't exist
+- Resource policies may not exist for all functions/layers
+- Code signing configurations are optional and may not be present
+
+=== ENUMERATION STRATEGY ===
+1. Start with list_functions and list_layers for resource discovery
+2. Use get_function for detailed function information
+3. Use get_policy for resource-based permissions analysis
+4. Enumerate versions and aliases for complete function mapping
+5. Check event source mappings for trigger analysis
+6. Analyze layer dependencies and sharing patterns
+
+=== ERROR HANDLING ===
+- ResourceNotFoundException: Function/layer doesn't exist or no access
+- AccessDeniedException: Insufficient permissions for the operation
+- InvalidParameterValueException: Invalid parameters provided
+- TooManyRequestsException: API rate limiting in effect
+- ServiceException: General AWS service error
+
+=== RATE LIMITING ===
+Lambda API has built-in rate limiting:
+- Most read operations: 100 TPS per region
+- Some operations may have lower limits
+- Implement exponential backoff for sustained enumeration
+
+Total API Commands: 11 unique Lambda API operations

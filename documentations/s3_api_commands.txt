@@ -1,0 +1,84 @@
+AWS S3 API commands used in the comprehensive S3 enumeration:
+
+---
+
+Bucket-Level Enumeration:
+- list_buckets
+- get_bucket_location
+- get_bucket_acl
+- get_bucket_policy
+- get_bucket_policy_status
+- get_public_access_block
+- get_bucket_website
+- get_bucket_cors
+- get_bucket_encryption
+- get_bucket_versioning
+- get_bucket_replication
+- get_bucket_logging
+- get_bucket_lifecycle_configuration
+- get_bucket_notification_configuration
+- get_bucket_tagging
+- get_bucket_accelerate_configuration
+- get_bucket_request_payment
+
+Object-Level Enumeration:
+- list_objects_v2
+- head_object
+- get_object_acl
+- get_object_tagging
+- get_object_attributes
+- get_object_legal_hold
+- get_object_retention
+- list_object_versions
+
+STS (Account Info):
+- get_caller_identity (STS)
+
+---
+
+Extended S3 API Commands (beyond your original list):
+
+Additional Bucket Commands:
+- get_bucket_accelerate_configuration    # Transfer acceleration settings
+- get_bucket_request_payment            # Request payer settings
+- get_bucket_notification_configuration # Event notifications (SNS, SQS, Lambda)
+- get_bucket_lifecycle_configuration    # Object lifecycle rules
+- get_bucket_tagging                    # Bucket tags
+
+Advanced Object Commands:
+- get_object_attributes                 # Advanced object metadata
+- get_object_legal_hold                 # Legal hold status (compliance)
+- get_object_retention                  # Object retention settings (compliance)
+- list_object_versions                  # All versions of objects (if versioning enabled)
+
+---
+
+Summary Table:
+
+| Category        | API Commands Count | Key Features |
+|-----------------|-------------------|--------------|
+| Bucket Config   | 17                | ACL, Policy, Encryption, Versioning, CORS, Website, etc. |
+| Object Info     | 8                 | Metadata, ACL, Tags, Versions, Compliance |
+| Account Info    | 1                 | Current user/account identification |
+| Total Commands  | 26                | Comprehensive S3 security assessment |
+
+---
+
+Security Focus Commands:
+- get_bucket_policy + get_bucket_policy_status  # Check for public policies
+- get_public_access_block                       # Public access restrictions
+- get_bucket_acl + get_object_acl              # Access control lists
+- get_bucket_encryption                         # Encryption at rest
+- get_bucket_versioning                         # Data protection via versioning
+- get_bucket_logging                           # Access audit trails
+- get_bucket_cors                              # Cross-origin security
+- get_object_legal_hold + get_object_retention  # Compliance features
+
+---
+
+Performance Optimizations:
+- Uses concurrent processing for multiple buckets
+- Pagination support for large object listings (list_objects_v2)
+- Configurable limits for object enumeration
+- Safe API calls with proper error handling
+- Selective detailed enumeration to balance speed vs completeness

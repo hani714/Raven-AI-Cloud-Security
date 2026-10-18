@@ -1,0 +1,273 @@
+{
+  "current_user": "manager_cgidcil9l99nv5",
+  "users": [
+    "admin_cgidcil9l99nv5",
+    "developer_cgidcil9l99nv5",
+    "manager_cgidcil9l99nv5"
+  ],
+  "managed_policies": {
+    "admin_cgidcil9l99nv5": [
+      {
+        "PolicyName": "IAMReadOnlyAccess",
+        "PolicyArn": "arn:aws:iam::aws:policy/IAMReadOnlyAccess"
+      }
+    ],
+    "manager_cgidcil9l99nv5": [
+      {
+        "PolicyName": "IAMReadOnlyAccess",
+        "PolicyArn": "arn:aws:iam::aws:policy/IAMReadOnlyAccess"
+      }
+    ]
+  },
+  "inline_policies": {
+    "admin_cgidcil9l99nv5": [
+      {
+        "PolicyName": "AssumeRoles",
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Resource": "arn:aws:iam::637423227354:role/cg_secretsmanager_cgidcil9l99nv5",
+              "Sid": "AssumeRole"
+            }
+          ]
+        }
+      }
+    ],
+    "developer_cgidcil9l99nv5": [
+      {
+        "PolicyName": "DeveloperViewSecrets",
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Action": "secretsmanager:ListSecrets",
+              "Effect": "Allow",
+              "Resource": "*",
+              "Sid": "ViewSecrets"
+            }
+          ]
+        }
+      }
+    ],
+    "manager_cgidcil9l99nv5": [
+      {
+        "PolicyName": "SelfManageAccess",
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Action": [
+                "iam:DeactivateMFADevice",
+                "iam:GetMFADevice",
+                "iam:EnableMFADevice",
+                "iam:ResyncMFADevice",
+                "iam:DeleteAccessKey",
+                "iam:UpdateAccessKey",
+                "iam:CreateAccessKey"
+              ],
+              "Condition": {
+                "StringEquals": {
+                  "aws:ResourceTag/developer": "true"
+                }
+              },
+              "Effect": "Allow",
+              "Resource": [
+                "arn:aws:iam::637423227354:user/*",
+                "arn:aws:iam::637423227354:mfa/*"
+              ],
+              "Sid": "SelfManageAccess"
+            },
+            {
+              "Action": [
+                "iam:DeleteVirtualMFADevice",
+                "iam:CreateVirtualMFADevice"
+              ],
+              "Effect": "Allow",
+              "Resource": "arn:aws:iam::637423227354:mfa/*",
+              "Sid": "CreateMFA"
+            }
+          ]
+        }
+      },
+      {
+        "PolicyName": "TagResources",
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Action": [
+                "iam:UntagUser",
+                "iam:UntagRole",
+                "iam:TagRole",
+                "iam:UntagMFADevice",
+                "iam:UntagPolicy",
+                "iam:TagMFADevice",
+                "iam:TagPolicy",
+                "iam:TagUser"
+              ],
+              "Effect": "Allow",
+              "Resource": "*",
+              "Sid": "TagResources"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "groups_managed_policies": {
+    "Admin": [
+      {
+        "PolicyName": "AdministratorAccess",
+        "PolicyArn": "arn:aws:iam::aws:policy/AdministratorAccess"
+      }
+    ]
+  },
+  "groups_inline_policies": {
+    "Admin": []
+  },
+  "users_groups": {},
+  "roles": {
+    "cg-lambda-invoker-vulnerable_lambda_cgid1ncsj7bxah": {
+      "RoleId": "AROAZI2LCSHNHAYBZ7NB6",
+      "Arn": "arn:aws:iam::637423227354:role/cg-lambda-invoker-vulnerable_lambda_cgid1ncsj7bxah",
+      "AssumeRolePolicyDocument": {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Sid": "",
+            "Effect": "Allow",
+            "Principal": {
+              "AWS": "AIDAZI2LCSHNC6T5WHMCJ"
+            },
+            "Action": "sts:AssumeRole"
+          }
+        ]
+      }
+    },
+    "cg_secretsmanager_cgidcil9l99nv5": {
+      "RoleId": "AROAZI2LCSHNF34VXMDBC",
+      "Arn": "arn:aws:iam::637423227354:role/cg_secretsmanager_cgidcil9l99nv5",
+      "AssumeRolePolicyDocument": {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Effect": "Allow",
+            "Principal": {
+              "AWS": "arn:aws:iam::637423227354:root"
+            },
+            "Action": "sts:AssumeRole",
+            "Condition": {
+              "Bool": {
+                "aws:MultiFactorAuthPresent": "true"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "rds-monitoring-role": {
+      "RoleId": "AROAZI2LCSHNCK26BPXQW",
+      "Arn": "arn:aws:iam::637423227354:role/rds-monitoring-role",
+      "AssumeRolePolicyDocument": {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Sid": "",
+            "Effect": "Allow",
+            "Principal": {
+              "Service": "monitoring.rds.amazonaws.com"
+            },
+            "Action": "sts:AssumeRole"
+          }
+        ]
+      }
+    },
+    "vulnerable_lambda_cgid1ncsj7bxah-policy_applier_lambda1": {
+      "RoleId": "AROAZI2LCSHNEK7B2PR7Y",
+      "Arn": "arn:aws:iam::637423227354:role/vulnerable_lambda_cgid1ncsj7bxah-policy_applier_lambda1",
+      "AssumeRolePolicyDocument": {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Sid": "",
+            "Effect": "Allow",
+            "Principal": {
+              "Service": "lambda.amazonaws.com"
+            },
+            "Action": "sts:AssumeRole"
+          }
+        ]
+      }
+    }
+  },
+  "attached_role_policies": {
+    "cg-lambda-invoker-vulnerable_lambda_cgid1ncsj7bxah": [],
+    "cg_secretsmanager_cgidcil9l99nv5": [
+      "arn:aws:iam::637423227354:policy/cg_view_secrets_cgidcil9l99nv5"
+    ],
+    "rds-monitoring-role": [
+      "arn:aws:iam::aws:policy/service-role/AmazonRDSEnhancedMonitoringRole"
+    ],
+    "vulnerable_lambda_cgid1ncsj7bxah-policy_applier_lambda1": []
+  },
+  "inline_role_policies": {
+    "cg-lambda-invoker-vulnerable_lambda_cgid1ncsj7bxah": {
+      "lambda-invoker": {
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Action": [
+                "lambda:ListFunctionEventInvokeConfigs",
+                "lambda:InvokeFunction",
+                "lambda:ListTags",
+                "lambda:GetFunction",
+                "lambda:GetPolicy"
+              ],
+              "Effect": "Allow",
+              "Resource": "arn:aws:lambda:us-east-1:637423227354:function:vulnerable_lambda_cgid1ncsj7bxah-policy_applier_lambda1"
+            },
+            {
+              "Action": [
+                "lambda:ListFunctions",
+                "iam:Get*",
+                "iam:List*",
+                "iam:SimulateCustomPolicy",
+                "iam:SimulatePrincipalPolicy"
+              ],
+              "Effect": "Allow",
+              "Resource": "*"
+            }
+          ]
+        },
+        "PolicyName": "lambda-invoker"
+      }
+    },
+    "vulnerable_lambda_cgid1ncsj7bxah-policy_applier_lambda1": {
+      "policy_applier_lambda1": {
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Action": "iam:AttachUserPolicy",
+              "Effect": "Allow",
+              "Resource": "arn:aws:iam::637423227354:user/cg-bilbo-vulnerable_lambda_cgid1ncsj7bxah"
+            },
+            {
+              "Action": [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+              ],
+              "Effect": "Allow",
+              "Resource": "arn:aws:logs:us-east-1:637423227354:log-group:/aws/lambda/vulnerable_lambda_cgid1ncsj7bxah-policy_applier_lambda1:*"
+            }
+          ]
+        },
+        "PolicyName": "policy_applier_lambda1"
+      }
+    }
+  }
+}

@@ -1,0 +1,36 @@
+AWS IAM API commands used in the current codebase:
+
+---
+
+User Enumeration (users.py):
+- list_users
+- get_user
+- list_access_keys
+- list_groups_for_user
+- list_attached_user_policies
+- list_user_policies
+- get_user_policy
+- list_user_tags
+
+Group Enumeration (groups.py):
+- list_groups
+- get_group
+- list_attached_group_policies
+- list_group_policies
+- get_group_policy
+
+Role Enumeration (roles.py and base):
+- list_roles
+- get_role
+- list_attached_role_policies
+- list_role_policies
+- get_role_policy
+- list_role_tags
+
+Policy & Permissions (base.py):
+- list_policy_versions
+- get_policy_version
+- simulate_principal_policy
+
+Account/STS (base.py):
+- get_caller_identity (STS)

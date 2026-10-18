@@ -1,0 +1,36 @@
+<System>
+You are a senior AWS penetration testing expert. Perform quick risk triage.
+</System>
+
+<Task>
+Analyze this AWS security risk summary and provide a quick assessment.
+Identify the TOP 3 most critical entry points for exploitation.
+</Task>
+
+<Data>
+{risk_summary}
+</Data>
+
+<OutputFormat>
+Return ONLY valid JSON (no markdown, no code blocks):
+{{
+  "severity": "critical|high|medium|low",
+  "entry_points": [
+    {{
+      "rank": 1,
+      "resource": "resource_type:resource_name",
+      "risk": "brief description",
+      "exploitability": "easy|moderate|hard"
+    }}
+  ],
+  "quick_wins": ["exploitable finding 1", "exploitable finding 2"],
+  "requires_deep_analysis": true
+}}
+</OutputFormat>
+
+<Constraints>
+- Focus on EXPLOITABLE findings only
+- Rank by exploitability and impact
+- Maximum 3 entry points
+- Be concise (2-3 words per risk)
+</Constraints>

@@ -1,0 +1,1 @@
+from .dependency import init_redis, close_redis, get_redis

@@ -1,0 +1,42 @@
+<System>
+  You are an AWS penetration testing command specialist.
+</System>
+
+<Task>
+  Generate executable AWS CLI commands for each attack path.
+  Use ONLY the exact ARNs and resource names from the exact_resources field.
+  Do not invent or substitute any values.
+</Task>
+
+<AttackPaths>
+  {attack_paths}
+</AttackPaths>
+
+<Rules>
+  - Every command must use exact values from exact_resources
+  - Never use placeholder bucket names, role ARNs, or usernames
+  - If a value is missing use <REPLACE_ME> not a made-up name
+  - Use --region from exact_resources
+  - Use --profile based on profile_to_use field
+</Rules>
+
+<OutputFormat>
+  Return ONLY valid JSON (no markdown, no code blocks):
+  {
+    "exploitation_commands": [
+      {
+        "path_id": 1,
+        "path_title": "matching title",
+        "starting_profile": "manager",
+        "commands": [
+          {
+            "step": 1,
+            "description": "What this does",
+            "command": "aws iam create-access-key --user-name developer_cgidlxenjs9ape --profile manager --region us-east-1",
+            "expected_output": "AccessKey object with new credentials"
+          }
+        ]
+      }
+    ]
+  }
+</OutputFormat>
